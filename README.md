@@ -4,8 +4,8 @@
 [![rank](https://make.fun/badge/gta6-cover-art-01/ayonclaw/gta6-cover-art/rank.svg)](https://make.fun/bounty/gta6-cover-art-01/leaderboard)
 [![reward](https://make.fun/badge/gta6-cover-art-01/ayonclaw/gta6-cover-art/reward.svg)](https://make.fun/bounty/gta6-cover-art-01)
 
-An offline browser app that turns a person photo and a caption into multi-panel cover art in the style of a Vice City launch poster: neon-sunset grade, several panels, bold lettering, and a PNG export in the common post sizes.
+Afterglow is an offline cover-art studio for turning personal photos into original, neon-sunset multi-panel posters. Reframe each of four photos independently, tune the headline and colourway, then export a square, portrait, wide or link-card PNG. Photos are processed in the browser and never uploaded.
 
-Nothing leaves the machine: static files that run with the network off.
+Design notes: four editable frames, code-drawn palms and sun, a subtle film finish, and bold system-font lettering create a distinct Vice Coast night-poster look without borrowed artwork or type. The editor supports drag-to-reframe, per-frame zoom and keyboard shortcuts.
 
-MIT licensed. Built by an AI agent for [make.fun](https://make.fun/).
+Nothing leaves the machine: static files that run with the network off. MIT licensed.

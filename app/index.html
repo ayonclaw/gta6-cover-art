@@ -1,23 +1,110 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cover Snap</title>
-<link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11101b">
+  <title>Afterglow — Cover Art Studio</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<main class="app">
-  <section class="controls">
-    <h1>Cover Snap</h1>
-    <p>A photo and a caption, made into a square cover.</p>
-    <label>Photo <input id="photo" type="file" accept="image/*"></label>
-    <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
-    <button id="export" type="button">Export PNG 1080 x 1080</button>
-    <p id="status" role="status"></p>
-  </section>
-  <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
-</main>
-<script type="module" src="./src/main.js"></script>
+  <div class="studio">
+    <header class="studio-header">
+      <a class="brand" href="#studio" aria-label="Afterglow cover art studio">
+        <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+        <span><strong>AFTERGLOW</strong><small>COVER ART STUDIO</small></span>
+      </a>
+      <div class="header-note"><span class="live-dot"></span> YOUR PHOTOS STAY LOCAL <span class="header-divider">/</span> BUILT FOR THE NIGHT</div>
+      <div class="header-edition">CREATIVE TOOLKIT <span>NO. 06</span></div>
+    </header>
+
+    <main id="studio" class="workbench">
+      <aside class="side-panel" aria-label="Cover controls">
+        <div class="panel-intro">
+          <p class="eyebrow"><span>01</span> / YOUR COVER, YOUR CITY</p>
+          <h1>Make a<br><em>moment.</em></h1>
+          <p class="intro-copy">Four frames. One feeling. Turn your night into a cover story.</p>
+        </div>
+
+        <section class="control-section photo-section" aria-labelledby="photo-heading">
+          <div class="section-heading"><h2 id="photo-heading">PHOTO GRID</h2><span>01—04</span></div>
+          <div class="panel-grid" role="group" aria-label="Choose a panel to edit">
+            <div class="panel-card is-active">
+              <button class="panel-select" type="button" data-panel="0" aria-pressed="true" aria-label="Select panel 1">
+                <span class="panel-thumb"><img id="thumb-0" src="./samples/boulevard.jpg" alt="Panel 1 photo"></span>
+                <span class="panel-card-copy"><span class="panel-name">FRAME 01</span><span class="panel-photo-name" id="photo-name-0">BOULEVARD</span></span>
+              </button>
+              <span class="panel-card-tools"><button class="tile-action" type="button" data-action="swap" data-index="0" title="Swap with next panel" aria-label="Swap panel 1 photo">↔</button><button class="tile-action" type="button" data-action="reset" data-index="0" title="Reset crop" aria-label="Reset panel 1 crop">↺</button></span>
+            </div>
+            <div class="panel-card">
+              <button class="panel-select" type="button" data-panel="1" aria-pressed="false" aria-label="Select panel 2">
+                <span class="panel-thumb"><img id="thumb-1" src="./samples/pier.jpg" alt="Panel 2 photo"></span>
+                <span class="panel-card-copy"><span class="panel-name">FRAME 02</span><span class="panel-photo-name" id="photo-name-1">PIER</span></span>
+              </button>
+              <span class="panel-card-tools"><button class="tile-action" type="button" data-action="swap" data-index="1" title="Swap with next panel" aria-label="Swap panel 2 photo">↔</button><button class="tile-action" type="button" data-action="reset" data-index="1" title="Reset crop" aria-label="Reset panel 2 crop">↺</button></span>
+            </div>
+            <div class="panel-card">
+              <button class="panel-select" type="button" data-panel="2" aria-pressed="false" aria-label="Select panel 3">
+                <span class="panel-thumb"><img id="thumb-2" src="./samples/pier.jpg" alt="Panel 3 photo"></span>
+                <span class="panel-card-copy"><span class="panel-name">FRAME 03</span><span class="panel-photo-name" id="photo-name-2">PIER</span></span>
+              </button>
+              <span class="panel-card-tools"><button class="tile-action" type="button" data-action="swap" data-index="2" title="Swap with next panel" aria-label="Swap panel 3 photo">↔</button><button class="tile-action" type="button" data-action="reset" data-index="2" title="Reset crop" aria-label="Reset panel 3 crop">↺</button></span>
+            </div>
+            <div class="panel-card">
+              <button class="panel-select" type="button" data-panel="3" aria-pressed="false" aria-label="Select panel 4">
+                <span class="panel-thumb"><img id="thumb-3" src="./samples/boulevard.jpg" alt="Panel 4 photo"></span>
+                <span class="panel-card-copy"><span class="panel-name">FRAME 04</span><span class="panel-photo-name" id="photo-name-3">BOULEVARD</span></span>
+              </button>
+              <span class="panel-card-tools"><button class="tile-action" type="button" data-action="swap" data-index="3" title="Swap with next panel" aria-label="Swap panel 4 photo">↔</button><button class="tile-action" type="button" data-action="reset" data-index="3" title="Reset crop" aria-label="Reset panel 4 crop">↺</button></span>
+            </div>
+          </div>
+          <div class="photo-actions">
+            <button id="photo-button" class="button-quiet" type="button"><span aria-hidden="true">＋</span> Add photo to frame <b id="active-frame-label">01</b></button>
+            <input id="photo" class="visually-hidden" type="file" accept="image/*" aria-label="Choose a photo for selected frame">
+            <span class="drop-hint">OR DROP A PHOTO ON A FRAME</span>
+          </div>
+          <label class="all-frames-option" for="fill-all"><input id="fill-all" type="checkbox"><span>USE THIS PHOTO IN ALL 4 FRAMES</span></label>
+          <label class="range-control" for="zoom"><span>FRAME ZOOM <output id="zoom-value">1.0×</output></span><input id="zoom" type="range" min="1" max="3" step="0.05" value="1" aria-label="Selected frame zoom"></label>
+        </section>
+
+        <section class="control-section caption-section" aria-labelledby="caption-heading">
+          <div class="section-heading"><h2 id="caption-heading">THE HEADLINE</h2><span>02</span></div>
+          <label class="field-label" for="caption">CAPTION <span>32 CHARACTERS MAX</span></label>
+          <input id="caption" type="text" maxlength="32" value="SUNSET HEIST" autocomplete="off" spellcheck="false">
+          <div class="style-row">
+            <label class="select-label" for="case-style">LETTER CASE<select id="case-style"><option value="upper" selected>UPPERCASE</option><option value="title">Title case</option></select></label>
+            <label class="range-control tracking-control" for="tracking"><span>TRACKING <output id="tracking-value">3</output></span><input id="tracking" type="range" min="0" max="10" step="0.5" value="3"></label>
+          </div>
+          <div class="style-row finish-row">
+            <label class="select-label" for="colorway">COLOURWAY<select id="colorway"><option value="sunset">SUNSET CLUB</option><option value="tidal">TIDAL NEON</option><option value="after">AFTER HOURS</option></select></label>
+            <label class="toggle-control" for="chrome"><input id="chrome" type="checkbox" checked><span class="toggle-track"><i></i></span><span>NEON<br>EDGE</span></label>
+          </div>
+        </section>
+
+        <section class="control-section export-section" aria-labelledby="size-heading">
+          <div class="section-heading"><h2 id="size-heading">EXPORT SIZE</h2><span>03</span></div>
+          <div class="size-grid" role="group" aria-label="Choose export size">
+            <button class="size-option is-selected" type="button" data-size="square" aria-pressed="true"><span>SQUARE</span><small>1080 × 1080</small></button>
+            <button class="size-option" type="button" data-size="portrait" aria-pressed="false"><span>PORTRAIT</span><small>1080 × 1350</small></button>
+            <button class="size-option" type="button" data-size="wide" aria-pressed="false"><span>WIDE</span><small>1920 × 1080</small></button>
+            <button class="size-option" type="button" data-size="link" aria-pressed="false"><span>LINK CARD</span><small>1200 × 630</small></button>
+          </div>
+          <button id="export" class="export-button" type="button"><span>EXPORT COVER</span><span class="export-arrow" aria-hidden="true">↗</span><small id="export-size-label">PNG · 1080 × 1080</small></button>
+          <p id="status" class="status-line" role="status" aria-live="polite"><span class="status-dot"></span>Loading your frames…</p>
+        </section>
+        <p class="keyboard-hint"><kbd>1—4</kbd> frames <kbd>[ ]</kbd> size <kbd>E</kbd> export</p>
+      </aside>
+
+      <section class="preview-column" aria-label="Live cover preview">
+        <div class="preview-meta"><div><span class="preview-pulse"></span> LIVE CANVAS</div><div class="preview-detail"><span id="preview-size">1080 × 1080</span><span class="meta-divider">/</span><span>DRAG TO REFRAME</span></div></div>
+        <div class="preview-stage">
+          <div class="canvas-frame"><canvas id="cover" width="1080" height="1080" aria-label="Live cover preview. Drag inside a frame to reposition its photo."></canvas></div>
+          <div class="stage-caption"><span>AFTERGLOW / ORIGINAL COVER ART</span><span>MADE BY YOU, FOR YOU</span></div>
+        </div>
+        <div class="preview-footer"><span><b>01</b> / 04 FRAMES</span><span>NO UPLOADS · NO WATERMARKS</span><span>YOUR STORY STARTS HERE <i>↗</i></span></div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>

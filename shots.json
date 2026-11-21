@@ -1,5 +1,5 @@
 [
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
+  { "name": "1-cover.png", "query": "?shot=cover&photo=boulevard&caption=SUNSET%20HEIST&size=square", "w": 1080, "h": 1080 },
+  { "name": "2-editor.png", "query": "?shot=editor&photo=boulevard&caption=SUNSET%20HEIST&size=square", "w": 1280, "h": 720 },
+  { "name": "3-wide-cover.png", "query": "?shot=cover&photo=pier&caption=AFTER%20HOURS&size=wide", "w": 1280, "h": 720 }
 ]
